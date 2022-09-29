@@ -2,8 +2,6 @@ package uz.unidev.eventdetector.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,7 +24,7 @@ object DatabaseModule {
         return Room.databaseBuilder(
             context, EventRoomDatabase::class.java, "events_database.db"
         )
-            .createFromAsset("events_table.db")
+            .createFromAsset("events_database.db")
             .build()
 
         /**

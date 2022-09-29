@@ -7,11 +7,14 @@ import android.content.IntentFilter
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.IBinder
+import android.widget.RemoteViews
+import android.widget.RemoteViews.RemoteView
 import androidx.core.app.NotificationCompat
 import dagger.hilt.android.AndroidEntryPoint
 import uz.unidev.eventdetector.R
 import uz.unidev.eventdetector.presentation.MainActivity
 import uz.unidev.eventdetector.receivers.EventBroadcastReceiver
+
 
 /**
  *  Created by Nurlibay Koshkinbaev on 27/09/2022 14:12
@@ -37,13 +40,27 @@ class EventService : Service() {
 
         val id = 123
 
-        val pendingIntent = pendingIntent()
+        val resultIntent = Intent(this, MainActivity::class.java)
+        val stackBuilder = TaskStackBuilder.create(this)
+        stackBuilder.addParentStack(MainActivity::class.java)
+        stackBuilder.addNextIntent(resultIntent)
+
+        val pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT)
+        val resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT)
+
+        val cancelIntent = Intent(baseContext, EventBroadcastReceiver::class.java).setAction("EXIT")
+        val cancelPendingIntent = PendingIntent.getBroadcast(baseContext, 0, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT)
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).apply {
             setSmallIcon(R.drawable.bell_small)
             setContentText(CONTENT_TEXT)
             setContentIntent(pendingIntent)
+            //addAction(R.drawable.ic_clear, "Dismiss", cancelPendingIntent)
+            setAutoCancel(true)
+            setOngoing(false)
         }.build()
+
+        notification.flags = Notification.FLAG_AUTO_CANCEL
 
         startForeground(id, notification)
 
@@ -66,6 +83,7 @@ class EventService : Service() {
         })
     }
 
+    /**
     private fun pendingIntent(): PendingIntent? {
         val resultIntent = Intent(this, MainActivity::class.java)
         val stackBuilder = TaskStackBuilder.create(this)
@@ -73,6 +91,7 @@ class EventService : Service() {
         stackBuilder.addNextIntent(resultIntent)
         return stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT)
     }
+    */
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if(eventBroadcast == null){
@@ -88,9 +107,9 @@ class EventService : Service() {
                 CHANNEL_NAME,
                 NotificationManager.IMPORTANCE_DEFAULT
             )
-            val notificationManager: NotificationManager =
-                getSystemService(NotificationManager::class.java)
+            val notificationManager: NotificationManager = getSystemService(NotificationManager::class.java)
             notificationManager.createNotificationChannel(notificationChannel)
+            notificationManager.cancelAll()
         }
     }
 

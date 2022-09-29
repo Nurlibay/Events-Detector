@@ -45,6 +45,7 @@ class MainScreen : Fragment(R.layout.screen_main) {
 
     private fun startService() {
         val intent = Intent(requireContext(), EventService::class.java)
+        //requireActivity().startService(intent)
         ContextCompat.startForegroundService(requireContext(), intent)
     }
 
