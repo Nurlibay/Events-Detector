@@ -12,4 +12,6 @@ interface MainViewModel {
     fun itemClick(eventEntity: EventEntity)
     fun getAllEvents()
     fun settingsClicked()
+    fun enableAllEvents()
+    fun disableAllEvents()
 }

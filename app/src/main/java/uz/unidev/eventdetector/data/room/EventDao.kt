@@ -25,4 +25,10 @@ interface EventDao {
 
     @Query("SELECT * FROM event_table WHERE id=:id")
     suspend fun getEventById(id: Int): EventEntity
+
+    @Query("UPDATE event_table SET status = 1 WHERE status = 0")
+    suspend fun enableAllEvents()
+
+    @Query("UPDATE event_table SET status = 0 WHERE status = 1")
+    suspend fun disableAllEvents()
 }

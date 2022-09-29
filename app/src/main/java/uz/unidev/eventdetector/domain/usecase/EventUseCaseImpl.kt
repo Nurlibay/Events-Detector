@@ -20,4 +20,12 @@ class EventUseCaseImpl @Inject constructor(
     override fun getAllEvents(): Flow<List<EventEntity>> {
         return eventRepository.getAllEvents()
     }
+
+    override suspend fun enableAllEvents() {
+        return eventRepository.enableAllEvents()
+    }
+
+    override suspend fun disableAllEvents() {
+        return eventRepository.disableAllEvents()
+    }
 }

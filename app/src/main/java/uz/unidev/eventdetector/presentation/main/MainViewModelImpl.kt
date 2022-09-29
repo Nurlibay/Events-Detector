@@ -36,4 +36,16 @@ class MainViewModelImpl @Inject constructor(
     override fun settingsClicked() {
         TODO("Not yet implemented")
     }
+
+    override fun enableAllEvents() {
+        viewModelScope.launch {
+            eventUseCase.enableAllEvents()
+        }
+    }
+
+    override fun disableAllEvents() {
+        viewModelScope.launch {
+            eventUseCase.disableAllEvents()
+        }
+    }
 }

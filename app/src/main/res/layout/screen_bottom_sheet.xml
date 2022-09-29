@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_margin="@dimen/margin_standard"
-    android:padding="@dimen/margin_standard"
+    android:paddingVertical="@dimen/margin_standard"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_enable_all_events"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="@dimen/margin_middle"
+        android:padding="@dimen/margin_middle_extra"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        tools:ignore="UnusedAttribute"
         >
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -38,9 +43,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_disable_all_events"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="@dimen/margin_middle"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        tools:ignore="UnusedAttribute"
+        android:padding="@dimen/margin_middle_extra"
         >
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -67,9 +77,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_share_app"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="@dimen/margin_middle"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/margin_middle_extra"
+        android:foreground="?attr/selectableItemBackground"
+        tools:ignore="UnusedAttribute"
         >
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -96,9 +111,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_rate_app"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingVertical="@dimen/margin_middle"
+        android:clickable="true"
+        android:focusable="true"
+        android:padding="@dimen/margin_middle_extra"
+        android:foreground="?attr/selectableItemBackground"
+        tools:ignore="UnusedAttribute"
         >
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -125,9 +145,16 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_quit_app"
         android:layout_width="match_parent"
-        android:paddingVertical="@dimen/margin_middle"
-        android:layout_height="match_parent">
+        android:paddingVertical="@dimen/margin_middle_extra"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:padding="@dimen/margin_middle_extra"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+        tools:ignore="UnusedAttribute"
+        >
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_quit"

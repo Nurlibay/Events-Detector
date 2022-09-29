@@ -19,4 +19,12 @@ class EventRepositoryImpl @Inject constructor(
     override fun getAllEvents(): Flow<List<EventEntity>> {
         return eventDao.getAllEvents()
     }
+
+    override suspend fun enableAllEvents() {
+        return eventDao.enableAllEvents()
+    }
+
+    override suspend fun disableAllEvents() {
+        return eventDao.disableAllEvents()
+    }
 }
