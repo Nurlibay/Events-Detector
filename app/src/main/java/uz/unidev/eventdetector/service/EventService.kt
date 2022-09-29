@@ -7,13 +7,11 @@ import android.content.IntentFilter
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.IBinder
-import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import dagger.hilt.android.AndroidEntryPoint
 import uz.unidev.eventdetector.R
 import uz.unidev.eventdetector.presentation.MainActivity
 import uz.unidev.eventdetector.receivers.EventBroadcastReceiver
-
 
 /**
  *  Created by Nurlibay Koshkinbaev on 27/09/2022 14:12
@@ -28,7 +26,6 @@ class EventService : Service() {
         return null
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate() {
         super.onCreate()
 
@@ -43,8 +40,7 @@ class EventService : Service() {
         val pendingIntent = pendingIntent()
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).apply {
-            setSmallIcon(R.drawable.ic_launcher_foreground)
-            setContentTitle(EVENT_APP)
+            setSmallIcon(R.drawable.bell_small)
             setContentText(CONTENT_TEXT)
             setContentIntent(pendingIntent)
         }.build()
@@ -108,7 +104,7 @@ class EventService : Service() {
     companion object {
         private const val CHANNEL_ID = "channel_id"
         private const val CHANNEL_NAME = "channel_name"
-        private const val EVENT_APP = "Event App"
+        private const val EVENT_DETECTOR = "EVENT_DETECTOR"
         private const val CONTENT_TEXT = "This app listen events from System"
     }
 }

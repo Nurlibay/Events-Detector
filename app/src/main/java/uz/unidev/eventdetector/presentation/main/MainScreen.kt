@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.unidev.eventdetector.R
 import uz.unidev.eventdetector.databinding.ScreenMainBinding
+import uz.unidev.eventdetector.presentation.dialog.MenuBottomSheet
 import uz.unidev.eventdetector.service.EventService
 
 /**
@@ -31,6 +32,11 @@ class MainScreen : Fragment(R.layout.screen_main) {
         viewModel.getAllEvents()
         setupAdapter()
         startService()
+
+        binding.ivMenu.setOnClickListener {
+            val bottomSheet = MenuBottomSheet()
+            bottomSheet.show(requireActivity().supportFragmentManager, "BOTTOM_SHEET")
+        }
     }
 
     private fun startService() {

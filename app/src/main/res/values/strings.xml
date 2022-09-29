@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">Event Detector</string>
+    <string name="app_name">Events Detector</string>
     <string name="events_detector">Events Detector</string>
     <string name="airplane_on">Airplane On</string>
+    <string name="enable_all_events">Enable all events</string>
+    <string name="disable_all_events">Disable all events</string>
+    <string name="share_this_app">Share app</string>
+    <string name="rate_app">Rate app</string>
+    <string name="quit_app">Quit app</string>
 </resources>
