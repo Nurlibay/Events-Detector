@@ -1,13 +1,9 @@
 package uz.unidev.eventdetector.service
 
-import android.app.NotificationChannel
-import android.app.NotificationManager
-import android.app.PendingIntent
-import android.app.Service
+import android.app.*
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
 import android.content.IntentFilter
-import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.IBinder
@@ -17,6 +13,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.unidev.eventdetector.R
 import uz.unidev.eventdetector.presentation.MainActivity
 import uz.unidev.eventdetector.receivers.EventBroadcastReceiver
+
 
 /**
  *  Created by Nurlibay Koshkinbaev on 27/09/2022 14:12
@@ -43,20 +40,17 @@ class EventService : Service() {
 
         val id = 123
 
+        val pendingIntent = pendingIntent()
+
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_launcher_foreground)
             setContentTitle(EVENT_APP)
             setContentText(CONTENT_TEXT)
-            setContentIntent(
-                PendingIntent.getActivity(
-                    this@EventService,
-                    0,
-                    Intent(this@EventService, MainActivity::class.java),
-                    PendingIntent.FLAG_IMMUTABLE
-                )
-            )
+            setContentIntent(pendingIntent)
         }.build()
+
         startForeground(id, notification)
+
         registerReceiver(eventBroadcast, IntentFilter().apply {
             addAction(Intent.ACTION_SCREEN_ON)
             addAction(Intent.ACTION_SCREEN_OFF)
@@ -74,6 +68,14 @@ class EventService : Service() {
             addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
             addAction(Intent.ACTION_HEADSET_PLUG)
         })
+    }
+
+    private fun pendingIntent(): PendingIntent? {
+        val resultIntent = Intent(this, MainActivity::class.java)
+        val stackBuilder = TaskStackBuilder.create(this)
+        stackBuilder.addParentStack(MainActivity::class.java)
+        stackBuilder.addNextIntent(resultIntent)
+        return stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT)
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
