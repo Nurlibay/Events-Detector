@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.unidev.eventdetector.data.room.EventEntity
 import uz.unidev.eventdetector.databinding.ItemEventBinding
+import uz.unidev.eventdetector.utils.Companion
 
 /**
  *  Created by Nurlibay Koshkinbaev on 27/09/2022 17:11
@@ -28,7 +29,7 @@ class EventAdapter : ListAdapter<EventEntity, EventAdapter.EventViewHolder>(item
             val data = getItem(absoluteAdapterPosition)
             binding.tvEventName.text = data.name
             binding.switchEventStatus.isChecked = data.status == 1
-            binding.ivEvent.setImageResource(data.image)
+            binding.ivEvent.setImageResource(Companion.list[absoluteAdapterPosition])
         }
     }
 

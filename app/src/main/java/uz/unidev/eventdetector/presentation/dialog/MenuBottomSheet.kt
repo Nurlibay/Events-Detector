@@ -60,8 +60,7 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
             shareIntent.type = "text/plain"
             shareIntent.putExtra(Intent.EXTRA_SUBJECT, R.string.app_name)
             var shareMessage = "Events detector app".trim() + "\n"
-            shareMessage =
-                "${shareMessage}https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}".trimIndent()
+            shareMessage = "${shareMessage}https://play.google.com/store/apps/details?id=${BuildConfig.APPLICATION_ID}".trimIndent()
             shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage)
             startActivity(Intent.createChooser(shareIntent, "Share app"))
         } catch (e: java.lang.Exception) {

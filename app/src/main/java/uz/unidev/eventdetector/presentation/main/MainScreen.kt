@@ -12,9 +12,11 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.unidev.eventdetector.R
+import uz.unidev.eventdetector.data.room.EventDao
 import uz.unidev.eventdetector.databinding.ScreenMainBinding
 import uz.unidev.eventdetector.presentation.dialog.MenuBottomSheet
 import uz.unidev.eventdetector.service.EventService
+import javax.inject.Inject
 
 /**
  *  Created by Nurlibay Koshkinbaev on 27/09/2022 16:01
@@ -22,6 +24,9 @@ import uz.unidev.eventdetector.service.EventService
 
 @AndroidEntryPoint
 class MainScreen : Fragment(R.layout.screen_main) {
+
+    @Inject
+    lateinit var dao: EventDao
 
     private val binding: ScreenMainBinding by viewBinding()
     private val viewModel: MainViewModel by viewModels<MainViewModelImpl>()
@@ -32,7 +37,6 @@ class MainScreen : Fragment(R.layout.screen_main) {
         viewModel.getAllEvents()
         setupAdapter()
         startService()
-
         binding.ivMenu.setOnClickListener {
             val bottomSheet = MenuBottomSheet()
             bottomSheet.show(requireActivity().supportFragmentManager, "BOTTOM_SHEET")

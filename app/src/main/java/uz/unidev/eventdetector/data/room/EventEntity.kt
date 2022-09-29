@@ -16,5 +16,4 @@ data class EventEntity(
     val id: Int,
     val name: String,
     val status: Int,
-    val image: Int
 ) : Parcelable
