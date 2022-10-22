@@ -58,4 +58,9 @@ class MainScreen : Fragment(R.layout.screen_main) {
             viewModel.itemClick(it)
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        requireActivity().stopService(Intent(requireContext(), EventService::class.java))
+    }
 }

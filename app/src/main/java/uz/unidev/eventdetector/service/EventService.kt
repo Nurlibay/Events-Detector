@@ -7,6 +7,7 @@ import android.content.IntentFilter
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.IBinder
+import android.util.Log
 import android.widget.RemoteViews
 import android.widget.RemoteViews.RemoteView
 import androidx.core.app.NotificationCompat
@@ -36,6 +37,8 @@ class EventService : Service() {
             eventBroadcast = EventBroadcastReceiver()
         }
 
+        Log.d("SERVICE_TAG", "onCreate")
+
         createChannel()
 
         val id = 123
@@ -45,11 +48,7 @@ class EventService : Service() {
         stackBuilder.addParentStack(MainActivity::class.java)
         stackBuilder.addNextIntent(resultIntent)
 
-        val pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_UPDATE_CURRENT)
-        val resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_ONE_SHOT)
-
-        val cancelIntent = Intent(baseContext, EventBroadcastReceiver::class.java).setAction("EXIT")
-        val cancelPendingIntent = PendingIntent.getBroadcast(baseContext, 0, cancelIntent, PendingIntent.FLAG_UPDATE_CURRENT)
+        val pendingIntent = stackBuilder.getPendingIntent(1, PendingIntent.FLAG_MUTABLE)
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID).apply {
             setSmallIcon(R.drawable.bell_small)
@@ -97,6 +96,7 @@ class EventService : Service() {
         if(eventBroadcast == null){
             eventBroadcast = EventBroadcastReceiver()
         }
+        Log.d("SERVICE_TAG", "onStartCommand")
         return START_STICKY
     }
 
@@ -114,15 +114,17 @@ class EventService : Service() {
     }
 
     override fun onDestroy() {
+        Log.d("SERVICE_TAG", "onDestroy")
         if (eventBroadcast != null) {
             unregisterReceiver(eventBroadcast)
+            eventBroadcast = null
         }
         super.onDestroy()
     }
 
     companion object {
         private const val CHANNEL_ID = "channel_id"
-        private const val CHANNEL_NAME = "channel_name"
+        private const val CHANNEL_NAME = "Events detector channel"
         private const val EVENT_DETECTOR = "EVENT_DETECTOR"
         private const val CONTENT_TEXT = "This app listen events from System"
     }
