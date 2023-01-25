@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import uz.nurlibaydev.eventdetector.data.room.EventEntity
-import uz.nurlibaydev.eventdetector.databinding.ItemEventBinding
 import uz.nurlibaydev.eventdetector.utils.Companion
+import uz.unidev.eventdetector.databinding.ItemEventBinding
 
 /**
  *  Created by Nurlibay Koshkinbaev on 27/09/2022 17:11

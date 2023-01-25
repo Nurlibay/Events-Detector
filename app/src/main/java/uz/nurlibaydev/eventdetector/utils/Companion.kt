@@ -1,6 +1,6 @@
 package uz.nurlibaydev.eventdetector.utils
 
-import uz.nurlibaydev.eventdetector.R
+import uz.unidev.eventdetector.R
 
 object Companion {
     val list = listOf(

@@ -11,11 +11,11 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import uz.nurlibaydev.eventdetector.R
 import uz.nurlibaydev.eventdetector.data.room.EventDao
-import uz.nurlibaydev.eventdetector.databinding.ScreenMainBinding
 import uz.nurlibaydev.eventdetector.presentation.dialog.MenuBottomSheet
 import uz.nurlibaydev.eventdetector.service.EventService
+import uz.unidev.eventdetector.R
+import uz.unidev.eventdetector.databinding.ScreenMainBinding
 import javax.inject.Inject
 
 /**

@@ -11,11 +11,11 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import uz.nurlibaydev.eventdetector.BuildConfig
-import uz.nurlibaydev.eventdetector.R
-import uz.nurlibaydev.eventdetector.databinding.ScreenBottomSheetBinding
 import uz.nurlibaydev.eventdetector.presentation.main.MainViewModel
 import uz.nurlibaydev.eventdetector.presentation.main.MainViewModelImpl
+import uz.unidev.eventdetector.BuildConfig
+import uz.unidev.eventdetector.R
+import uz.unidev.eventdetector.databinding.ScreenBottomSheetBinding
 
 @AndroidEntryPoint
 class MenuBottomSheet : BottomSheetDialogFragment() {
@@ -24,7 +24,7 @@ class MenuBottomSheet : BottomSheetDialogFragment() {
     private val viewModel: MainViewModel by viewModels<MainViewModelImpl>()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.screen_bottom_sheet, container, false)
     }

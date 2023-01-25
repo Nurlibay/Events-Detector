@@ -10,10 +10,9 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import dagger.hilt.android.AndroidEntryPoint
-import uz.nurlibaydev.eventdetector.R
 import uz.nurlibaydev.eventdetector.presentation.MainActivity
 import uz.nurlibaydev.eventdetector.receivers.EventBroadcastReceiver
-
+import uz.unidev.eventdetector.R
 
 /**
  *  Created by Nurlibay Koshkinbaev on 27/09/2022 14:12
